@@ -16,5 +16,12 @@ namespace Proyecto_final
         {
             InitializeComponent();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Form1 falumno = new Form1();
+            falumno.Visible = true;
+            Visible = false;
+        }
     }
 }

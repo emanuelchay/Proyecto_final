@@ -20,15 +20,16 @@ namespace Proyecto_final
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Administrar falumno = new Administrar();
-            falumno.Show();
-          
+            Seguridad falumno = new Seguridad();
+            falumno.Visible = true;
+            Visible = false;          
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Ventas fventas = new Ventas();
-            fventas.Show();
+            Seguridad fventas = new Seguridad();
+            fventas.Visible = true;
+            Visible = false;
         }
     }
 }
