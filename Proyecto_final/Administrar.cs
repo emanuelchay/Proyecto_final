@@ -14,6 +14,7 @@ namespace Proyecto_final
     public partial class Administrar : Form
     {
         List<Productos> lproductos =  new List<Productos>();
+        int posicion;
         public Administrar()
         {
             InitializeComponent();
@@ -112,9 +113,38 @@ namespace Proyecto_final
                     textBox5.Text = Convert.ToString(lproductos[x].Codigo_producto);
                     textBox6.Text = Convert.ToString(lproductos[x].Precio_producto);
                     textBox8.Text = Convert.ToString(lproductos[x].Cantidad_producto);
-
+                    posicion = x;
                 }
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //Los datos modificados de los textbox, se sobreescriben en la posición donde se encontró el dato
+            lproductos[posicion].Nombre_producto = textBox4.Text;
+            lproductos[posicion].Codigo_producto = Convert.ToInt16(textBox5.Text);
+            lproductos[posicion].Precio_producto = Convert.ToInt16(textBox6.Text);
+            lproductos[posicion].Cantidad_producto = Convert.ToInt16(textBox8.Text);
+
+            string fileName = "productos.txt";
+
+            //Para que sobreescriba los datos existentes se usa CREATE
+            FileStream stream = new FileStream(fileName, FileMode.Create, FileAccess.Write);
+
+            StreamWriter writer = new StreamWriter(stream);
+            //Se recorre toda la lista de clientes, que incluye a los ya modificados y se vuelve a grabar al archivo
+            for (int i = 0; i < lproductos.Count; i++)
+            {
+
+                writer.WriteLine(lproductos[i].Nombre_producto);
+                writer.WriteLine(lproductos[i].Codigo_producto);
+                writer.WriteLine(lproductos[i].Precio_producto);
+                writer.WriteLine(lproductos[i].Cantidad_producto);
+
+            }
+
+            //Cerrar el archivo
+            writer.Close();
         }
     }
 }
